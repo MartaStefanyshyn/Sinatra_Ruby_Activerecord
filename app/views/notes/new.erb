@@ -1,0 +1,9 @@
+<h2>Create Note</h2>
+<form action="/new" method="post">
+  <%= erb :'notes/_form', :layout => false %>
+
+  <div>
+    <button type="submit" class="btn btn-success">Submit</button>
+  </div>
+</form>
+<a href="/">Back</a>

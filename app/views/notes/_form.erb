@@ -1,0 +1,10 @@
+<div class="form-group">
+   <label for="note_title">Title:</label>
+   <br>
+   <input id="note_title" class="form-control" name="note[title]" type="text"  style="width=40%" value="<%= @note.try(:title) %>"/>
+ </div>
+ <div class="form-group">
+   <label for="note_body">Body:</label>
+   <br>
+   <textarea id="note_body" name="note[body]" class="form-control" rows="10"><%= @note.try(:body) %></textarea>
+ </div>
