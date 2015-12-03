@@ -1,0 +1,22 @@
+<h1>Comments</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Content</th>
+      <th colspan="3" ></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @comments.each do |comment| %>
+      <tr>
+        <td><%= comment.content %></td>
+        <td><a href="/comments/comment/<%= comment.id %>">Show</a></td>
+        <td><a href="/comments/comment/<%= comment.id %>/edit">Edit</a></td>
+        <td><a href="/comments/comment/<%= comment.id %>/destroy">Delete</a></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<a href="/comments/new"> New </a>
+

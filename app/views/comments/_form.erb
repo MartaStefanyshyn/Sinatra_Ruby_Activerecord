@@ -1,0 +1,6 @@
+<div class="form-group">
+   <label for="comment_content">Content:</label>
+   <br>
+   <textarea id="comment_content" name="comment[content]" class="form-control" rows="10"><%= @comment.try(:content) %></textarea>
+   <input type="hidden" name="comment[note_id]" value="<%= @note.id %>">
+ </div>

@@ -1,0 +1,9 @@
+<h2>Create Comment</h2>
+<form action="/note/<%= @note.id %>/comments/new" method="post">
+  <%= erb :'comments/_form', :layout => false %>
+
+  <div>
+    <button type="submit" class="btn btn-success">Submit</button>
+  </div>
+</form>
+<a href="/note/<%= @note.id %>">Back</a>

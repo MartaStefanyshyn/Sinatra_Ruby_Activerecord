@@ -1,4 +1,29 @@
 <h2>Note:</h2>
 <p><%= @note.title %></p>
 <p><%= @note.body %></p>
+
+<% if !@note.comments.empty? %>
+<p>Comments</p>
+<table>
+  <thead>
+    <tr>
+      <th>Content</th>
+      <th colpspan="3" ></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @note.comments.each do |comment| %>
+      <tr>
+        <td><%= comment.content %></td>
+        <td><a href="/note/<%= @note.id %>/comments/comment/<%= comment.id %>">Show</a></td>
+        <td><a href="/note/<%= @note.id %>/comments/comment/<%= comment.id %>/edit">Edit</a></td>
+        <td><a href="/note/<%= @note.id %>/comments/comment/<%= comment.id %>/destroy">Delete</a></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end %>
+
+<a href="/note/<%= @note.id %>/comments/new">Add Comment</a>
+<br/>
 <a href="/">Back</a>
