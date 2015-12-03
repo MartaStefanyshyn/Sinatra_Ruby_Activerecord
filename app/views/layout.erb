@@ -6,6 +6,15 @@
     <link href='//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css' rel='stylesheet' />
   </head>
   <body class='container'>
+    <header>
+      <div id="login-toolbar">
+        <% if current_user %>
+          <a href="/logout">Logout</a>
+        <% else %>
+          <a href="/login">Login</a> | <a href="/signup">Signup</a>
+        <% end %>
+      </div>
+    </header>
     <%= yield %>
   </body>
 </html>
