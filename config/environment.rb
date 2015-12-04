@@ -7,7 +7,7 @@ require 'rubygems'
 
 require 'pg'
 require 'sinatra/activerecord'
-
+require 'json'
 require 'sinatra'
 
 APP_ROOT = Pathname.new(File.expand_path('../../', __FILE__))

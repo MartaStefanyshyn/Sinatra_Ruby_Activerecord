@@ -1,3 +1,7 @@
+before do
+  content_type :json
+end
+
 get "/comments" do
   @comments = Comment.all
   redirect "/comments/new" if @comments.empty?
@@ -5,8 +9,12 @@ get "/comments" do
 end
 
 get "/note/:id/comments/new" do
-  @note = Note.find(params[:id])
-  erb :'comments/new'
+  if current_user
+    @note = Note.find(params[:id])
+    erb :'comments/new'
+  else
+    redirect "/login"
+  end
 end
 
 post "/note/:id/comments/new" do
@@ -56,4 +64,8 @@ post "/note/:note_id/comments/comment/:id/destroy" do
   else
     redirect to("/note/#{@note.id}")
   end
+end
+
+def note_params
+  params.require(:note).permit(:title, :body)
 end

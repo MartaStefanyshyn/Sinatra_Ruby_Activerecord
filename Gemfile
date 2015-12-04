@@ -6,3 +6,4 @@ gem "activerecord"
 gem "sinatra-activerecord"
 gem 'shotgun'
 gem 'bcrypt'
+gem 'json'

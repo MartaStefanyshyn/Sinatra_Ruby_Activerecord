@@ -1,0 +1,19 @@
+<div class = 'container'>
+  <h3>All Notes</h3>
+  <table class="table">
+    <tr>
+      <th>Title</th>
+      <th>Body</th>
+      <th colspan="3"></th>
+    </tr>
+    <tr ng-repeat="note in notes">
+      <td>{{note.title}}</td>
+      <td>{{note.body}}</td>
+      <td><a class="btn btn-primary"  ng-click="showNote(note.id)">Show</a></td>
+      <td><a class="btn btn-primary"  ng-click="editNote(note.id)">Edit</a></td>
+      <td><a class="btn btn-danger"  ng-click="deleteNote(note.id)">Delete</a></td>
+    </tr>
+  </table>
+  <a class="btn btn-success"  ng-click="createNote()">Create Note</a>
+</div>
+

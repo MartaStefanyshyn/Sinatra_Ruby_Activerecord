@@ -1,52 +1,40 @@
-get "/" do
-  @notes = Note.order("created_at DESC")
-  redirect "/new" if @notes.empty?
-  erb :'notes/index'
+get "/api/notes" do
+  @notes = Note.all
+  @notes.to_json
 end
 
-get "/new" do
-  erb :'notes/new'
-end
-
-post "/new" do
-  @note = Note.new(params[:note])
+post "/api/notes" do
+  data = JSON.parse(request.body.read)
+  @note = Note.new(data)
   if @note.save
-    redirect "note/#{@note.id}"
+    @note.to_json
   else
-    erb :'notes/new'
+    halt 500
   end
 end
 
-get "/note/:id" do
+get "/api/notes/:id" do
   @note = Note.find_by_id(params[:id])
-  erb :'notes/note'
+  @note.to_json
 end
 
-get "/note/:id/edit" do
-  @note = Note.find_by_id(params[:id])
-  erb :'notes/edit'
-end
-
-post "/note/:id" do
+put "/api/notes/:id" do
+  data = JSON.parse(request.body.read)
   @note = Note.find(params[:id])
-  if @note.update_attributes(params[:note])
-    redirect to("/")
+  if @note.update(data)
+    @note.to_json
   else
-    erb :'notes/edit'
+    halt 404
   end
 end
 
-get "/note/:id/destroy" do
+delete "/api/notes/:id" do
   @note = Note.find_by_id(params[:id])
-  erb :'notes/delete'
-end
-
-post "/note/:id/destroy" do
-  if params.has_key?("ok")
-    @note = Note.find_by_id(params[:id])
-    @note.destroy
-    redirect to("/")
+  @note.destroy
+  if @note.destroy
+    {:success => "ok"}.to_json
   else
-    redirect to("/")
+    halt 500
   end
 end
+
