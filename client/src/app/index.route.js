@@ -4,7 +4,8 @@
   angular
     .module('sinatraRuby')
     .config(routerConfig)
-    .factory('Notes', NotesFactory);
+    .factory('Notes', NotesFactory)
+    .factory('Comments', CommentsFactory);;
 
   /** @ngInject */
   function routerConfig($stateProvider, $urlRouterProvider) {
@@ -30,6 +31,22 @@
         url: "/notes_new",
         templateUrl: "app/note/new.html",
         controller: "NoteNewController"
+      }).state("comments", {
+        url: "/comments",
+        templateUrl: "app/comment/comments.html",
+        controller: "CommentsController"
+      }).state("comment", {
+        url: "/comments/:id",
+        templateUrl: "app/comment/show.html",
+        controller: "CommentShowController"
+      }).state("comment_edit", {
+        url: "/comments/:id/_edit",
+        templateUrl: "app/comment/edit.html",
+        controller: "CommentShowController"
+      }).state("comment_new", {
+        url: "/comments_new",
+        templateUrl: "app/comment/new.html",
+        controller: "CommentNewController"
       });
 
     $urlRouterProvider.otherwise('/');
@@ -44,6 +61,17 @@
         'destroy': { method: 'DELETE' },
       });
     return Notes;
+  }
+
+  function CommentsFactory($resource) {
+    var Comments = $resource('/api/comments/:id', {id: '@id'},
+      {
+        'create':  { method: 'POST' ,params: {id: '@id'} },
+        'show':    { method: 'GET'  },
+        'update':  { method: 'PUT' ,params: {id: '@id'} },
+        'destroy': { method: 'DELETE' },
+      });
+    return Comments;
   }
 
 })();

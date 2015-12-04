@@ -1,0 +1,19 @@
+<div class="container">
+  <h1>Edit Comment</h1>
+
+  <form name="form">
+    <div class="form-group">
+      <label class="control-label" for="content">Content:</label>
+      <div class="controls">
+        <input type="text" name="content" class="form-control" required placeholder="Comment Content" ng-model="comment.content" autofocus/>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <div class="controls">
+        <a ng-click="updateComment()" class="btn btn-success">Update Comment</a>
+        <a ng-click="back()" class="btn btn-default">Back</a>
+      </div>
+    </div>
+  </form>
+</div>

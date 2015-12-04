@@ -1,71 +1,35 @@
-before do
-  content_type :json
-end
-
-get "/comments" do
+get "/api/comments" do
   @comments = Comment.all
-  redirect "/comments/new" if @comments.empty?
-  erb :'comments/index'
+  @comments.to_json
 end
 
-get "/note/:id/comments/new" do
-  if current_user
-    @note = Note.find(params[:id])
-    erb :'comments/new'
-  else
-    redirect "/login"
-  end
-end
-
-post "/note/:id/comments/new" do
-  @note = Note.find(params[:id])
-  @comment = Comment.new(params[:comment])
+post "/api/comments" do
+  data = JSON.parse(request.body.read)
+  @comment = Comment.new(data)
   if @comment.save
-    redirect "/note/#{@note.id}"
+    @comment.to_json
   else
-    erb :'comments/new'
+    halt 500
   end
 end
 
-get "/note/:note_id/comments/comment/:id" do
-  @note = Note.find(params[:note_id])
+get "/api/comments/:id" do
   @comment = Comment.find_by_id(params[:id])
-  erb :'comments/show'
+  @comment.to_json
 end
 
-get "/note/:note_id/comments/comment/:id/edit" do
-  @note = Note.find(params[:note_id])
-  @comment = Comment.find_by_id(params[:id])
-  erb :'comments/edit'
-end
-
-post "/note/:note_id/comments/comment/:id" do
-  @note = Note.find(params[:note_id])
+put "/api/comments/:id" do
+  data = JSON.parse(request.body.read)
   @comment = Comment.find(params[:id])
-  if @comment.update_attributes(params[:comment])
-    redirect to("/note/#{@note.id}")
+  if @comment.update_attributes(data)
+    @comment.to_json
   else
-    erb :'comments/edit'
+    halt 500
   end
 end
 
-get "/note/:note_id/comments/comment/:id/destroy" do
-  @note = Note.find(params[:note_id])
+delete "/api/comments/:id" do
   @comment = Comment.find_by_id(params[:id])
-  erb :'comments/delete'
+  @comment.destroy
 end
 
-post "/note/:note_id/comments/comment/:id/destroy" do
-  @note = Note.find(params[:note_id])
-  if params.has_key?("ok")
-    @comment = Comment.find_by_id(params[:id])
-    @comment.destroy
-    redirect to("/note/#{@note.id}")
-  else
-    redirect to("/note/#{@note.id}")
-  end
-end
-
-def note_params
-  params.require(:note).permit(:title, :body)
-end

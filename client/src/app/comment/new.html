@@ -1,0 +1,21 @@
+<div class="container">
+  <h1>New Comment</h1>
+
+  <form role="form">
+    <div class="control-group">
+      <label class="control-label" for="inputContent">Content:</label>
+      <div class="controls">
+        <input type="text" id="inputContent" ng-model="comment.content"/>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <div class="controls">
+        <a ng-click="back()" class="btn btn-small">Back</a>
+        <a ng-click="createNewComment()" class="btn btn-success">Create Comment</a>
+      </div>
+    </div>
+  </form>
+</div>
+
+
