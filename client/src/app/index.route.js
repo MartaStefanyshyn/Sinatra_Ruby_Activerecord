@@ -5,7 +5,8 @@
     .module('sinatraRuby')
     .config(routerConfig)
     .factory('Notes', NotesFactory)
-    .factory('Comments', CommentsFactory);;
+    .factory('Comments', CommentsFactory)
+    .factory('DataHolder', DataHolder);
 
   /** @ngInject */
   function routerConfig($stateProvider, $urlRouterProvider) {
@@ -72,6 +73,18 @@
         'destroy': { method: 'DELETE' },
       });
     return Comments;
+  }
+
+  function DataHolder($resource) {
+    var value = '';
+    return {
+      setValue: function(newValue) {
+        value = newValue;
+      },
+      getValue: function() {
+        return value;
+      }
+    }
   }
 
 })();

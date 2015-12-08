@@ -6,7 +6,7 @@
     .controller('NoteShowController', NoteShowController);
 
   /** @ngInject */
-    function NoteShowController($scope, Notes, $stateParams, $location) {
+    function NoteShowController($scope, Notes, $stateParams, $location, Comments, DataHolder) {
       $scope.note = Notes.show({id: $stateParams.id});
       $scope.back = function () {
         $location.path('/notes');
@@ -16,5 +16,10 @@
         console.log($scope.note.id);
         console.log($scope.note);
       };
+      $scope.addComment = function(noteId){
+        $scope.noteId = noteId
+        DataHolder.setValue($scope.noteId);
+        $location.path('/comments_new');
+      }
     }
 })();

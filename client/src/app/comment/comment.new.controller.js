@@ -6,8 +6,9 @@
     .controller('CommentNewController', CommentNewController);
 
   /** @ngInject */
-    function CommentNewController($scope, Comments, $location) {
+    function CommentNewController($scope, Comments, $location, DataHolder) {
       $scope.comment = {}
+      $scope.comment.note_id = DataHolder.getValue();
       $scope.createNewComment = function () {
         Comments.save($scope.comment);
       }
