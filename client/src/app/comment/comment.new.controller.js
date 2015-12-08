@@ -12,9 +12,10 @@
       $scope.comment.parent_id = DataHolder.getPar();
       $scope.createNewComment = function () {
         Comments.save($scope.comment);
+        $location.path('/notes/'+ $scope.comment.note_id);
       }
       $scope.back = function () {
-        $location.path('/comments');
+        $location.path('/notes/'+ $scope.comment.note_id);
       };
     }
 })();

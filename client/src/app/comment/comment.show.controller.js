@@ -13,6 +13,7 @@
       };
       $scope.updateComment= function () {
         Comments.update({id: $scope.comment.id}, $scope.comment);
+        $location.path('/notes/' + $scope.comment.note_id);
       };
     }
 })();

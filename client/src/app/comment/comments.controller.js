@@ -8,10 +8,11 @@
 
   /** @ngInject */
   function CommentsController($scope, Comments, $location) {
-    $scope.comments = Comments.get();
+    $scope.comments = Comments.query();
+    console.log($scope.comments);
     $scope.deleteComment = function (commentId) {
       Comments.destroy({ id: commentId });
-      $scope.comments = Comments.get();
+      $scope.comments = Comments.query();
     };
     $scope.showComment = function (commentId) {
       $location.path('/comments/' + commentId);

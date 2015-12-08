@@ -6,8 +6,18 @@
   <a ng-click = "addComment(note.note.id, '0')" class = "btn btn-success">Add Comment</a>
   <a ng-click = "back()" class = "btn btn-default">Back</a>
   <h2>Comments</h2>
-  <div ng-repeat="comment in note.comments">
-    <p>{{comment.content}}</p>
-    <a ng-click = "addComment(note.note.id, comment.id)" >Reply</a>
+  <div>
+   <script type="text/ng-template" id="commentTree">
+        <p>{{ comment.content }}</p>
+        <a class="btn btn-success" ng-click = "addComment(note.note.id, comment.id)" >Reply</a>
+        <a class="btn btn-primary"  ng-click="editComment(comment.id)">Edit</a>
+        <a class="btn btn-danger"  ng-click="deleteComment(comment.id)">Delete</a>
+        <ul ng-if="comment.subcomment">
+            <li ng-repeat="comment in comment.subcomment" ng-include="'commentTree'"></li>
+        </ul>
+     </script>
+    <ul>
+        <li ng-repeat="comment in note.comments" ng-include="'commentTree'"></li>
+    </ul>
   </div>
 </div>

@@ -1,7 +1,6 @@
 get "/api/comments" do
-  @notes = Array.new
-  @comments = Comment.all
-  {comments: @comments, notes: @notes}.to_json
+  @comments = Comment.convert(0)
+  @comments.to_json
 end
 
 post "/api/comments" do

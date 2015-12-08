@@ -14,11 +14,8 @@ post "/api/notes" do
 end
 
 get "/api/notes/:id" do
-  @comments = Array.new
   @note = Note.includes(:comments).find_by_id(params[:id])
-  @note.comments.each do |comment|
-    @comments.push comment
-  end
+  @comments = @note.comments.convert(0)
   {note: @note, comments: @comments}.to_json
 end
 

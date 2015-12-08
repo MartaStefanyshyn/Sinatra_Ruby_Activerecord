@@ -1,18 +1,12 @@
 <div class = 'container'>
   <h3>All Comments</h3>
-  <table class="table">
-    <tr>
-      <th>Content</th>
-      <th>Note Title</th>
-      <th colspan="3"></th>
-    </tr>
-    <tr ng-repeat="comment in comments.comments">
-      <td>{{comment.content}}</td>
-      <td>{{comments.notes[$index]}}</td>
-      <td><a class="btn btn-primary"  ng-click="showComment(comment.id)">Show</a></td>
-      <td><a class="btn btn-primary"  ng-click="editComment(comment.id)">Edit</a></td>
-      <td><a class="btn btn-danger"  ng-click="deleteComment(comment.id)">Delete</a></td>
-    </tr>
-  </table>
-  <a class="btn btn-success"  ng-click="createComment()">Create Comment</a>
+   <script type="text/ng-template" id="commentTree">
+        <p>{{ comment.content }}</p>
+        <ul ng-if="comment.subcomment">
+            <li  ng-repeat="comment in comment.subcomment" ng-include="'commentTree'"></li>
+        </ul>
+     </script>
+    <ul>
+        <li ng-repeat="comment in comments" ng-include="'commentTree'"></li>
+    </ul>
 </div>

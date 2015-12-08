@@ -6,7 +6,7 @@
     .controller('NoteShowController', NoteShowController);
 
   /** @ngInject */
-    function NoteShowController($scope, Notes, $stateParams, $location, Comments, DataHolder) {
+    function NoteShowController($scope, Notes, $stateParams, $location, Comments, DataHolder, $window) {
       $scope.note = Notes.show({id: $stateParams.id});
       $scope.back = function () {
         $location.path('/notes');
@@ -19,6 +19,13 @@
       $scope.addComment = function(noteId, parentId){
         DataHolder.setValue(noteId, parentId);
         $location.path('/comments_new');
-      }
+      };
+      $scope.deleteComment = function(commentId){
+        Comments.destroy({ id: commentId });
+        $window.location.reload();
+      };
+      $scope.editComment = function (commentId) {
+        $location.path('/comments/' + commentId + '/_edit');
+      };
     }
 })();
