@@ -15,7 +15,7 @@ end
 
 get "/api/notes/:id" do
   @note = Note.includes(:comments).find_by_id(params[:id])
-  @comments = @note.comments.convert(0)
+  @comments = Comment.convert(@note.comments, 0)
   {note: @note, comments: @comments}.to_json
 end
 

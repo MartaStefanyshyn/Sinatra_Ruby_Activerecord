@@ -1,5 +1,5 @@
 get "/api/comments" do
-  @comments = Comment.convert(0)
+  @comments = Comment.convert(Comment.all, 0)
   @comments.to_json
 end
 
