@@ -76,13 +76,20 @@
   }
 
   function DataHolder($resource) {
-    var value = '';
+    var value = {
+      note: '',
+      par: ''
+    };
     return {
-      setValue: function(newValue) {
-        value = newValue;
+      setValue: function(noteId, parentId) {
+        value.note = noteId;
+        value.par = parentId;
       },
-      getValue: function() {
-        return value;
+      getNote: function() {
+        return value.note;
+      },
+      getPar: function() {
+        return value.par;
       }
     }
   }

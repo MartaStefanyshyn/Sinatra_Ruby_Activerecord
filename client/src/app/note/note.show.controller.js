@@ -16,9 +16,8 @@
         console.log($scope.note.id);
         console.log($scope.note);
       };
-      $scope.addComment = function(noteId){
-        $scope.noteId = noteId
-        DataHolder.setValue($scope.noteId);
+      $scope.addComment = function(noteId, parentId){
+        DataHolder.setValue(noteId, parentId);
         $location.path('/comments_new');
       }
     }

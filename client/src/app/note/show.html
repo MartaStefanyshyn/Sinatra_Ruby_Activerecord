@@ -1,8 +1,13 @@
 <div class ="container">
   <h1>Note</h1>
-  <p><b>Title: </b> {{note.title}}</p>
+  <p><b>Title: </b> {{note.note.title}}</p>
   <br/>
-  <p><b>Body: </b> {{note.body}}</p>
-  <a ng-click = "addComment(note.id)" class = "btn btn-success">Add Comment</a>
+  <p><b>Body: </b> {{note.note.body}}</p>
+  <a ng-click = "addComment(note.note.id, '0')" class = "btn btn-success">Add Comment</a>
   <a ng-click = "back()" class = "btn btn-default">Back</a>
+  <h2>Comments</h2>
+  <div ng-repeat="comment in note.comments">
+    <p>{{comment.content}}</p>
+    <a ng-click = "addComment(note.note.id, comment.id)" >Reply</a>
+  </div>
 </div>
