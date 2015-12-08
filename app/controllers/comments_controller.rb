@@ -1,9 +1,6 @@
 get "/api/comments" do
   @notes = Array.new
-  @comments = Comment.includes(:note).all
-  @comments.each do |comment|
-    @notes.push comment.note.title
-  end
+  @comments = Comment.all
   {comments: @comments, notes: @notes}.to_json
 end
 

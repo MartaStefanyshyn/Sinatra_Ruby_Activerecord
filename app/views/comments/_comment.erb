@@ -1,0 +1,10 @@
+<div class="well">
+  <h2><%= comment.content %></h2>\
+
+  <!-- <a href="/comments/new/<%=comment.id%>">Reply</a> -->
+
+  <% from_reply_form ||= nil %>
+  <% unless from_reply_form %>
+    <a href="/comments/new/<%=comment.id%>">Reply</a>
+  <% end %>
+</div>

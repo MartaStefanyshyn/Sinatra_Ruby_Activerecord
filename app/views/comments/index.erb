@@ -1,3 +1,6 @@
+<a href="/comments/new"> Add new comment</a>
+
+
 <h1>Comments</h1>
 <table>
   <thead>
@@ -9,7 +12,7 @@
   <tbody>
     <% @comments.each do |comment| %>
       <tr>
-        <td><%= comment.content %></td>
+        <td><%= erb :'comments/_comment', locals: {comment: comment } %></td>
         <td><a href="/comments/comment/<%= comment.id %>">Show</a></td>
         <td><a href="/comments/comment/<%= comment.id %>/edit">Edit</a></td>
         <td><a href="/comments/comment/<%= comment.id %>/destroy">Delete</a></td>

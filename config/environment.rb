@@ -9,7 +9,7 @@ require 'pg'
 require 'sinatra/activerecord'
 require 'json'
 require 'sinatra'
-
+require 'closure_tree'
 APP_ROOT = Pathname.new(File.expand_path('../../', __FILE__))
 configure do
   set :root, APP_ROOT.to_path

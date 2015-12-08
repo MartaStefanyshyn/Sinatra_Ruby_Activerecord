@@ -7,3 +7,4 @@ gem "sinatra-activerecord"
 gem 'shotgun'
 gem 'bcrypt'
 gem 'json'
+gem 'closure_tree'
