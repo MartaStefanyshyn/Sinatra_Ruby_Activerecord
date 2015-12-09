@@ -8,3 +8,10 @@ gem 'shotgun'
 gem 'bcrypt'
 gem 'json'
 gem 'closure_tree'
+group :test, :development do
+  gem 'rspec'
+end
+
+group :test do
+  gem 'rack-test'
+end
