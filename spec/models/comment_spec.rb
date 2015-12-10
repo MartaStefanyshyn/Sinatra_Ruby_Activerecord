@@ -29,14 +29,32 @@ RSpec.describe Comment, type: :model  do
     expect(comment.note).to eq note
   end
 
-  it "has note" do
+  it "execute convert method" do
     comments = []
     comment1 = Comment.create(id: 1, content: "content", note_id: 1, user_id: 1, parent_id: 0)
     comment2 = Comment.create(id: 2, content: "content", note_id: 1, user_id: 1, parent_id: 1)
     comments.push(comment1, comment2)
     result = Comment.convert(comments, 0)
 
-    expect(result).to eq [comment1.attributes.merge("subcomment" => [comment2.attributes.merge("subcomment" =>[])])]
+    expect(result).to eq [comment1.attributes.merge("children" => [comment2.attributes.merge("children" =>[])])]
+  end
+
+  it "has note" do
+    comment = Comment.create(id: 1, content: "content", note_id: 1, user_id: 1, parent_id: 0)
+    result = Comment.convert([comment], 0)
+
+    expect(result).to eq [comment.attributes.merge("children" => [])]
+  end
+
+  it "execute convert method" do
+    comment = Comment.create(id: 1, content: "content", note_id: 1, user_id: 1, parent_id: 0)
+    Comment.class_eval do
+      class << self
+        alias_method :convert_, :convert
+      end
+    end
+    expect(Comment).to receive(:convert).with([comment], 1).ordered.and_call_original
+    Comment.convert_([comment], 0)
   end
 
 end

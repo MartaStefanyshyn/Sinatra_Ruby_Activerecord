@@ -8,6 +8,6 @@ class Comment < ActiveRecord::Base
 
   def self.convert(comments, input_id)
     hash = comments.select{|comment| comment.parent_id == input_id}
-    hash.map{|element| element.attributes.merge("subcomment" => self.convert(comments, element[:id]))}
+    hash.map{|element| element.attributes.merge("children" => self.convert(comments, element[:id]))}
   end
 end
