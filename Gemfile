@@ -10,6 +10,8 @@ gem 'json'
 gem 'closure_tree'
 group :test, :development do
   gem 'rspec'
+  gem 'database_cleaner'
+  gem 'shoulda-matchers'
 end
 
 group :test do

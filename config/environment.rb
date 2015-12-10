@@ -11,14 +11,6 @@ require 'json'
 require 'sinatra'
 require 'closure_tree'
 require 'rspec/core/rake_task'
-require 'rspec'
-require "rack/test"
-
-RSpec::Core::RakeTask.new :specs do |task|
-  task.pattern = Dir['spec/**/*_spec.rb']
-end
-
-task :default => ['specs']
 
 APP_ROOT = Pathname.new(File.expand_path('../../', __FILE__))
 configure do

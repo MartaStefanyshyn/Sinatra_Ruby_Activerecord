@@ -1,20 +1,29 @@
-# ENV['RACK_ENV'] = 'test'
-
-# require "./config/environment"
-
-# RSpec.configure do |config|
-#   include Rack::Test::Methods
-#   def app() Sinatra::Application end
-# end
 ENV['RACK_ENV'] = 'test'
 
-require "./config/environment"
+require File.join(File.dirname(__FILE__), "..", "config/environment.rb")
+require "rack/test"
+require "rspec"
+require 'sinatra'
+require 'database_cleaner'
+require 'shoulda-matchers'
+require 'closure_tree/test/matcher'
+RSpec::Core::RakeTask.new :specs do |task|
+  task.pattern = Dir['spec/**/*_spec.rb']
+end
+task :default => ['specs']
+set :environment, :test
+set :run, false
+set :raise_errors, true
+set :logging, false
 
 RSpec.configure do |config|
   config.include Rack::Test::Methods
+  config.include ClosureTree::Test::Matcher, type: :model
+
+  DatabaseCleaner.strategy = :truncation
 
   config.before(:each) do
-    $db = []
+    DatabaseCleaner.clean
   end
 
   config.expect_with :rspec do |expectations|
@@ -41,4 +50,11 @@ RSpec.configure do |config|
   config.order = :random
 
   Kernel.srand config.seed
+end
+
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :rspec
+    with.library :active_record
+  end
 end
