@@ -2,8 +2,8 @@
   <h3>All Comments</h3>
    <script type="text/ng-template" id="commentTree">
         <p>{{ comment.content }}</p>
-        <ul ng-if="comment.subcomment">
-            <li  ng-repeat="comment in comment.subcomment" ng-include="'commentTree'"></li>
+        <ul ng-if="comment.children">
+            <li  ng-repeat="comment in comment.children" ng-include="'commentTree'"></li>
         </ul>
      </script>
     <ul>

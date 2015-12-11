@@ -12,8 +12,8 @@
         <a class="btn btn-success" ng-click = "addComment(note.note.id, comment.id)" >Reply</a>
         <a class="btn btn-primary"  ng-click="editComment(comment.id)">Edit</a>
         <a class="btn btn-danger"  ng-click="deleteComment(comment.id)">Delete</a>
-        <ul ng-if="comment.subcomment">
-            <li ng-repeat="comment in comment.subcomment" ng-include="'commentTree'"></li>
+        <ul ng-if="comment.children">
+            <li ng-repeat="comment in comment.children" ng-include="'commentTree'"></li>
         </ul>
      </script>
     <ul>
