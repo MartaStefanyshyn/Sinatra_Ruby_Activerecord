@@ -1,5 +1,5 @@
 class Comment < ActiveRecord::Base
-  acts_as_tree
+  acts_as_convertable
 
   belongs_to :note, dependent: :destroy
   belongs_to :user, dependent: :destroy
