@@ -1,0 +1,43 @@
+<div class="container">
+  <h1>Sign Up</h1>
+
+  <form name="form">
+    <div class="form-group" ng-class="errorClass('username')">
+      <label class="control-label" for="username">Username</label>
+      <div class="controls">
+        <input ng-model="user.username" type="text" name="username" placeholder="Username" required>
+        <span class="help-block" ng-show="form.username.$invalid && form.username.$dirty">
+          {{errorMessage('username')}}
+        </span>
+      </div>
+    </div>
+
+    <div class="form-group" ng-class="errorClass('password')">
+      <label class="control-label" for="password">Password</label>
+      <div class="controls">
+        <input ng-model="user.password" type="password" name="password" placeholder="Password" required>
+        <span class="help-block" ng-show="form.password.$invalid && form.password.$dirty">
+          {{errorMessage('password')}}
+        </span>
+      </div>
+    </div>
+
+    <div class="form-group" ng-class="errorClass('password_confirmation')">
+      <label class="control-label" for="password_confirmation">Password Confirmation</label>
+      <div class="controls">
+        <input ng-model="user.password_confirmation" type="password" name="password_confirmation" placeholder="Password Confirmation" required>
+        <span class="help-block" ng-show="form.password_confirmation.$invalid && form.password_confirmation.$dirty">
+          {{errorMessage('password_confirmation')}}
+        </span>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <div class="controls">
+        <a ng-click="signUp()" class="btn btn-success">Sign Up</a>
+      </div>
+    </div>
+  </form>
+</div>
+
+

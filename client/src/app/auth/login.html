@@ -1,0 +1,33 @@
+<div class="container">
+  <h1>Log In</h1>
+
+  <form name="form">
+    <div class="form-group" ng-class="errorClass('username')">
+      <label class="control-label" for="username">Username:</label>
+      <div class="controls">
+        <input type="text" name="username" class="form-control" required placeholder="Username" ng-model="user.username" autofocus/>
+        <span class="help-block" ng-show="form.username.$invalid && form.username.$dirty">
+          {{errorMessage('username')}}
+        </span>
+      </div>
+    </div>
+
+    <div class="form-group" ng-class="errorClass('password')">
+      <label class="control-label" for="password">Password:</label>
+      <div class="controls">
+        <input type="text" name="password" class="form-control" required placeholder="Password" ng-model="user.password"/>
+        <span class="help-block" ng-show="form.password.$invalid && form.password.$dirty">
+          {{errorMessage('password')}}
+        </span>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <div class="controls">
+        <a ng-click="logIn()" class="btn btn-success">Log In</a>
+      </div>
+    </div>
+  </form>
+</div>
+
+

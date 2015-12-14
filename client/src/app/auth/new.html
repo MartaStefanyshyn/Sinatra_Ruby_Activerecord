@@ -1,0 +1,25 @@
+<div class="container">
+  <h1>New user</h1>
+
+  <form role="form">
+    <div class="control-group">
+      <label class="control-label" for="inputUsername">Username:</label>
+      <div class="controls">
+        <input type="text"  id="inputUsername" ng-model="user.username"/>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="inputPassword">Password:</label>
+      <div class="controls">
+        <input type="text" id="inputPassword" ng-model="user.password"/>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <div class="controls">
+        <a ng-click="back()" class="btn btn-small">Back</a>
+        <a ng-click="createNewUser()" class="btn btn-success">Create User</a>
+      </div>
+    </div>
+  </form>
+</div>

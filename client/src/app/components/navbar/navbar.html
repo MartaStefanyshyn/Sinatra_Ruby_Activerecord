@@ -1,20 +1,17 @@
 <nav class="navbar navbar-static-top navbar-inverse">
   <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="https://github.com/Swiip/generator-gulp-angular">
-        <span class="glyphicon glyphicon-home"></span> Gulp Angular
-      </a>
-    </div>
-
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-6">
+    <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
-        <li class="active"><a ng-href="#">Home</a></li>
-        <li><a ng-href="#">About</a></li>
-        <li><a ng-href="#">Contact</a></li>
+        <li class="active"><a href="#/">Home</a></li>
+        <li><a href="/#/notes">Notes</a></li>
+        <li><a href="/#/users">Users</a></li>
+        <li><a href="/#/comments">Comments</a></li>
       </ul>
-
-      <ul class="nav navbar-nav navbar-right acme-navbar-text">
-        <li>Application was created {{ vm.relativeDate }}.</li>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a ng-controller="AuthController" ng-show="exist.username == ''" href="#/login">Log In</a></li>
+         <li><a ng-controller="AuthController" ng-hide="exist.username == ''" >Log In As: {{exist.username}}</a></li>
+        <li><a ng-controller="AuthController" ng-show="exist.username == ''" href="#/signup">Sign Up</a></li>
+        <li ng-controller="AuthController" ng-hide="exist.username == ''" ng-click="logOut()"><a href="">Log Out</a></li>
       </ul>
     </div>
   </div>
