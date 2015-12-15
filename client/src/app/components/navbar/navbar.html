@@ -9,7 +9,7 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a ng-controller="AuthController" ng-show="exist.username == ''" href="#/login">Log In</a></li>
-         <li><a ng-controller="AuthController" ng-hide="exist.username == ''" >Log In As: {{exist.username}}</a></li>
+         <li><a ng-controller="AuthController" ng-hide="exist.username == ''" href="#/users/{{exist.id}}" >Log In As: {{exist.username}}</a></li>
         <li><a ng-controller="AuthController" ng-show="exist.username == ''" href="#/signup">Sign Up</a></li>
         <li ng-controller="AuthController" ng-hide="exist.username == ''" ng-click="logOut()"><a href="">Log Out</a></li>
       </ul>

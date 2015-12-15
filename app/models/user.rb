@@ -4,5 +4,10 @@ class User < ActiveRecord::Base
   has_many :notes
   validates :username, presence: true
   validates_confirmation_of :password
+  after_initialize :set_default_role, :if => :new_record?
+
+  def set_default_role
+    self.role = "user"
+  end
 end
 

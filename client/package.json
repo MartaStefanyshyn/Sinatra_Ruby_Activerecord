@@ -1,7 +1,9 @@
 {
   "name": "sinatraRuby",
   "version": "0.0.0",
-  "dependencies": {},
+  "dependencies": {
+    "ng-admin": "^0.9.1"
+  },
   "scripts": {
     "test": "gulp test"
   },
