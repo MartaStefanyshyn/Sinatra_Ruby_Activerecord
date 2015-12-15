@@ -1,40 +1,37 @@
 get '/api/users' do
-  @users = User.all
-  @users.to_json
-end
-
-get '/api/users/:id' do
-  @user = User.find(params[:id])
-  @user.to_json
+  if current_user
+    @user = User.find(current_user.id)
+    @user.to_json
+  else
+    status 403
+  end
 end
 
 post '/api/users' do
-  data = JSON.parse(request.body.read)
-  user = User.new(data)
-  if user.save
-    user.to_json
+  if current_user && current_user.role == 'admin'
+    data = JSON.parse(request.body.read)
+    user = User.new(data)
+    if user.save
+      user.to_json
+    else
+      halt 500
+    end
   else
-    halt 500
+    halt 403
   end
 end
 
-put "/api/users/:id" do
-  data = JSON.parse(request.body.read)
-  @user = User.find(params[:id])
-  if @user.update(data)
-    @user.to_json
+put "/api/users" do
+  if current_user
+    data = JSON.parse(request.body.read)
+    @user = User.find(current_user.id)
+    if @user.update(data)
+      @user.to_json
+    else
+      halt 404
+    end
   else
-    halt 404
-  end
-end
-
-delete "/api/users/:id" do
-  @user = User.find_by_id(params[:id])
-  @user.destroy
-  if @user.destroy
-    {:success => "ok"}.to_json
-  else
-    halt 500
+    halt 403
   end
 end
 

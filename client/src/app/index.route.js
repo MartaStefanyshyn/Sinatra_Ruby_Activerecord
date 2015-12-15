@@ -57,20 +57,20 @@
         templateUrl: 'app/auth/signup.html',
         controller: 'AuthController'
       }).state('users', {
-        url: '/users',
-        templateUrl: 'app/auth/users.html',
+        url: '/admin/users',
+        templateUrl: 'app/admin/users.html',
         controller: 'UsersController'
       }).state("user", {
-        url: "/users/:id",
-        templateUrl: "app/auth/show.html",
+        url: "/admin/users/:id",
+        templateUrl: "app/admin/show.html",
         controller: "UserController"
       }).state("user_edit", {
-        url: "/users/:id/_edit",
-        templateUrl: "app/auth/edit.html",
+        url: "/admin/users/:id/_edit",
+        templateUrl: "app/admin/edit.html",
         controller: "UserController"
       }).state("user_new", {
-        url: "/users_new",
-        templateUrl: "app/auth/new.html",
+        url: "/admin/users_new",
+        templateUrl: "app/admin/new.html",
         controller: "UserNewController"
       }).state('logout', {
         url: '/logout',
@@ -80,6 +80,14 @@
         url: '/logged_in',
         templateUrl: 'app/auth/logout.html',
         controller: 'AuthController'
+      }).state('profile', {
+        url: '/profile',
+        templateUrl: 'app/auth/profile.html',
+        controller: 'ProfileController'
+      }).state('profile_edit', {
+        url: '/profile/_edit',
+        templateUrl: 'app/auth/edit.html',
+        controller: 'ProfileController'
       });
 
     $urlRouterProvider.otherwise('/');

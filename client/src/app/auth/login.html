@@ -15,7 +15,7 @@
     <div class="form-group" ng-class="errorClass('password')">
       <label class="control-label" for="password">Password:</label>
       <div class="controls">
-        <input type="text" name="password" class="form-control" required placeholder="Password" ng-model="user.password"/>
+        <input type="password" name="password" class="form-control" required placeholder="Password" ng-model="user.password"/>
         <span class="help-block" ng-show="form.password.$invalid && form.password.$dirty">
           {{errorMessage('password')}}
         </span>

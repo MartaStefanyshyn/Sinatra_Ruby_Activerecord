@@ -13,7 +13,7 @@
         Users.update({id: $scope.user.id}, $scope.user);
       };
       $scope.back = function() {
-        $location.path('/users');
+        $location.path('/admin/users');
       }
     }
 })();

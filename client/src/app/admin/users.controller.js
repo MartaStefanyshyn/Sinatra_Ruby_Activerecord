@@ -14,13 +14,13 @@
         $scope.users = Users.query();
       };
       $scope.showUser = function (userId) {
-        $location.path('/users/' + userId);
+        $location.path('/admin/users/' + userId);
       };
       $scope.editUser = function (userId) {
-        $location.path('/users/' + userId + '/_edit');
+        $location.path('/admin/users/' + userId + '/_edit');
       };
       $scope.createUser = function () {
-        $location.path('/users_new');
+        $location.path('/admin/users_new');
       };
     }
 })();
