@@ -8,6 +8,8 @@ gem 'shotgun'
 gem 'bcrypt'
 gem 'json'
 gem 'closure_tree'
+gem 'omniauth'
+gem 'omniauth-facebook'
 group :test, :development do
   gem 'rspec'
   gem 'database_cleaner'

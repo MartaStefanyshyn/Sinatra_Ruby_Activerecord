@@ -11,13 +11,17 @@ require 'json'
 require 'sinatra'
 require 'closure_tree'
 require 'rspec/core/rake_task'
-
+require 'omniauth'
+require 'omniauth-facebook'
 APP_ROOT = Pathname.new(File.expand_path('../../', __FILE__))
 configure do
   set :root, APP_ROOT.to_path
   enable :sessions
   set :session_secret, ENV['SESSION_SECRET'] || 'this is a secret shhhhh'
   set :views, File.join(Sinatra::Application.root, "app", "views")
+end
+use OmniAuth::Builder do
+  provider :facebook, ENV['CONSUMER_KEY'] || '', ENV['CONSUMER_SECRET'] || ''
 end
 Dir[APP_ROOT.join('app', 'controllers', '*.rb')].each { |file| require file }
 Dir[APP_ROOT.join('app', 'helpers', '*.rb')].each { |file| require file }

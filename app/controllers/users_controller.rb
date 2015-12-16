@@ -7,20 +7,6 @@ get '/api/users' do
   end
 end
 
-post '/api/users' do
-  if current_user && current_user.role == 'admin'
-    data = JSON.parse(request.body.read)
-    user = User.new(data)
-    if user.save
-      user.to_json
-    else
-      halt 500
-    end
-  else
-    halt 403
-  end
-end
-
 put "/api/users" do
   if current_user
     data = JSON.parse(request.body.read)
@@ -37,7 +23,6 @@ end
 
 post '/api/login' do
   data = JSON.parse(request.body.read)
-  puts data['username']
   user = User.find_by(username: data['username']).try(:authenticate, data['password'])
 
   if user
@@ -45,6 +30,22 @@ post '/api/login' do
     {session: session[:user_id]}.to_json
   else
     halt 403
+  end
+end
+
+get '/auth/:provider/callback' do
+  auth_hash = request.env['omniauth.auth']
+  user = User.find_by(username: auth_hash['info']['name']).try(:authenticate, auth_hash.uid)
+
+  if user
+    session[:user_id] = user.id
+    {session: session[:user_id]}.to_json
+  else
+    user = User.new(username: auth_hash['info']['name'], password: auth_hash.uid)
+    if user.save
+      session[:user_id] = user.id
+      {session: session[:user_id]}.to_json
+    end
   end
 end
 

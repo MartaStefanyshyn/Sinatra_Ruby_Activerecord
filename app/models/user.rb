@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   after_initialize :set_default_role, :if => :new_record?
 
   def set_default_role
-    if self.role == ''
+    if self.role == nil
       self.role = "user"
     end
   end
