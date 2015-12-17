@@ -33,9 +33,9 @@ post '/api/login' do
   end
 end
 
-get '/auth/:provider/callback' do
-  auth_hash = request.env['omniauth.auth']
-  user = User.find_by(username: auth_hash['info']['name']).try(:authenticate, auth_hash.uid)
+post '/api/send' do
+  data = JSON.parse(request.body.read)
+  user = User.find_by(username: data['username']).try(:authenticate, data['password'])
 
   if user
     session[:user_id] = user.id

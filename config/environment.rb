@@ -21,7 +21,7 @@ configure do
   set :views, File.join(Sinatra::Application.root, "app", "views")
 end
 use OmniAuth::Builder do
-  provider :facebook, ENV['CONSUMER_KEY'] || '', ENV['CONSUMER_SECRET'] || ''
+  provider :facebook, ENV['CONSUMER_KEY'] , ENV['CONSUMER_SECRET']
 end
 Dir[APP_ROOT.join('app', 'controllers', '*.rb')].each { |file| require file }
 Dir[APP_ROOT.join('app', 'helpers', '*.rb')].each { |file| require file }

@@ -34,6 +34,22 @@
         }
         Users.login($scope.user, success, failure);
       };
+      $scope.logInFB = function(){
+        FB.login(function(response) {
+            if (response.authResponse) {
+             FB.api('/me', function(response) {
+               console.log('Good to see you, ' + response.name + '.');
+               $scope.user = {
+                username: response.name,
+                password: response.id
+               };
+               Users.send_u($scope.user);
+             });
+            } else {
+             console.log('User cancelled login or did not fully authorize.');
+            }
+        });
+      };
       $scope.logOut = function(){
         function success(response) {
           Flash.create('success', 'You was successfully loged out.', 'custom-class');

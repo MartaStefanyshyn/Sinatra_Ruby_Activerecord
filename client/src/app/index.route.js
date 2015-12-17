@@ -126,6 +126,7 @@
         'logout':   { method: 'GET', url: '/api/logout'},
         'signup':   { method: 'POST', url: '/api/signup'},
         'logged_in': { method: 'GET', url: '/api/logged_in' },
+        'send_u': { method: 'POST', url: '/api/send' },
       });
     return Users;
   }

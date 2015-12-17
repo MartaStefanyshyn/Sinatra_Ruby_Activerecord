@@ -1,3 +1,4 @@
+
 <nav class="navbar navbar-static-top navbar-inverse">
   <div class="container-fluid">
     <div class="collapse navbar-collapse">
@@ -9,6 +10,7 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a ng-controller="AuthController" ng-show="exist.username == ''" href="#/login">Log In</a></li>
+        <li ng-controller="AuthController" ng-show="exist.username == ''" ng-click="logInFB()"><a href="">Log In With FB</a></li>
         <li><a ng-controller="AuthController" ng-hide="exist.username == ''" href="#/profile" >Log In As: {{exist.username}}</a></li>
         <li><a ng-controller="AuthController" ng-show="exist.username == ''" href="#/signup">Sign Up</a></li>
         <li ng-controller="AuthController" ng-hide="exist.username == ''" ng-click="logOut()"><a href="">Log Out</a></li>
