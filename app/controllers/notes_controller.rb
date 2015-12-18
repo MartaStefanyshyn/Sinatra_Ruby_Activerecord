@@ -39,3 +39,11 @@ delete "/api/notes/:id" do
   end
 end
 
+get "/api/count" do
+  @notes = Note.joins(:comments).group("notes.id").select("notes.title, count(comments.note_id) as comments_count")
+  @notes.each do |note|
+    p note.comments_count
+  end
+  @notes.to_json
+end
+
