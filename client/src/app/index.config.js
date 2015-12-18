@@ -6,7 +6,7 @@
     .config(config);
 
   /** @ngInject */
-  function config($logProvider, toastrConfig) {
+  function config($logProvider, toastrConfig, ChartJsProvider) {
     // Enable log
     $logProvider.debugEnabled(true);
 
@@ -16,6 +16,14 @@
     toastrConfig.positionClass = 'toast-top-right';
     toastrConfig.preventDuplicates = true;
     toastrConfig.progressBar = true;
+    ChartJsProvider.setOptions({
+      colours: ['#97BBCD', '#DCDCDC', '#F7464A', '#46BFBD', '#FDB45C', '#949FB1', '#4D5360'],
+      responsive: true
+    });
+    // Configure all doughnut charts
+    ChartJsProvider.setOptions('Doughnut', {
+      animateScale: true
+    });
   }
 
 })();

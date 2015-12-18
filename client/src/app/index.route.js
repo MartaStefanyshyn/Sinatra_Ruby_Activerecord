@@ -88,6 +88,14 @@
         url: '/profile/_edit',
         templateUrl: 'app/auth/edit.html',
         controller: 'ProfileController'
+      }).state('chart', {
+        url: '/chart',
+        templateUrl: 'app/charts/chart.html',
+        controller: 'ChartsController'
+      }).state('chart2', {
+        url: '/chart2',
+        templateUrl: 'app/charts/chart_2.html',
+        controller: 'Charts2Controller'
       });
 
     $urlRouterProvider.otherwise('/');
