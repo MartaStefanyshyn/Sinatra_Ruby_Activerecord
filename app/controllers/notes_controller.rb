@@ -40,7 +40,13 @@ delete "/api/notes/:id" do
 end
 
 get "/api/count" do
-  @notes = Note.joins(:comments).group("notes.id").select("notes.title, count(comments.note_id) as comments_count")
-  @notes.to_json
+  note = Note.arel_table
+  comment = Comment.arel_table
+  predicate = comment[:note_id].eq( note[:id] )
+  result = Note.select([note[:title], comment[:note_id].count]).
+                joins(note.join(comment, Arel::Nodes::OuterJoin).
+                on(predicate).join_sources).
+                group(note[:id]).order(:count).to_a
+  result.to_json
 end
 

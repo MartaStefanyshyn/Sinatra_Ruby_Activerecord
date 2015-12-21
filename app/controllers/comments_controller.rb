@@ -34,8 +34,10 @@ delete "/api/comments/:id" do
 end
 
 get '/api/comments_group' do
-  @comments = Comment.group("comments.created_at::date").select("comments.created_at::date, count(comments.created_at::date) as comments_count")
-  #@comments = Comment.group("DATE_TRUNC('day', created_at)").count
-  @comments.to_json
+  comment = Comment.arel_table
+  result = Comment.select(["comments.created_at::date", comment[:created_at].count]).
+                    group("comments.created_at::date").to_a
+  result.to_json
 end
+
 

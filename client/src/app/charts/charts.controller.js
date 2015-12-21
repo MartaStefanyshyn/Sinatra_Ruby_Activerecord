@@ -15,7 +15,7 @@
     $http.get('/api/count').success(function(response) {
       response.forEach(function(value) {
         $scope.labels.push(value.title);
-        $scope.scores.push(value.comments_count);
+        $scope.scores.push(value.count);
       });
       $scope.data.push($scope.scores);
     });
