@@ -7,7 +7,7 @@
 
 
   /** @ngInject */
-  function Charts2Controller($scope, $location, $http) {
+  function Charts2Controller($scope, $location, $http, $filter) {
     $scope.labels = [];
     $scope.scores = [];
     $scope.data = [];
@@ -15,10 +15,9 @@
     $http.get('/api/comments').success(function(response) {
       response.forEach(function(value) {
         $scope.labels.push(value.content);
-        $scope.scores.push(value.created_at);
+        $scope.scores.push(($filter('date')(new Date(value.created_at),'dd.MM')));
       });
       $scope.data.push($scope.scores);
-      console.log($scope.data)
     });
   };
 })();
