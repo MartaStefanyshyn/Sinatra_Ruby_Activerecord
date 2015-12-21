@@ -12,10 +12,10 @@
     $scope.scores = [];
     $scope.data = [];
     console.log($scope.chart);
-    $http.get('/api/comments').success(function(response) {
+    $http.get('/api/comments_group').success(function(response) {
       response.forEach(function(value) {
-        $scope.labels.push(value.content);
-        $scope.scores.push(($filter('date')(new Date(value.created_at),'dd.MM')));
+        $scope.labels.push($filter('date')(new Date(value.created_at),'dd-MM-yyyy'));
+        $scope.scores.push(value.comments_count);
       });
       $scope.data.push($scope.scores);
     });
