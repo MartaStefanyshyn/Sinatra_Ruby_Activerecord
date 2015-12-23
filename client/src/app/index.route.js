@@ -12,11 +12,7 @@
   /** @ngInject */
   function routerConfig($stateProvider, $urlRouterProvider) {
     $stateProvider
-      .state('home', {
-        url: '/',
-        templateUrl: 'app/note/notes.html',
-        controller: 'NotesController',
-      }).state("notes", {
+      .state("notes", {
         url: "/notes",
         templateUrl: "app/note/notes.html",
         controller: "NotesController"
@@ -96,7 +92,12 @@
         url: '/chart2',
         templateUrl: 'app/charts/chart_2.html',
         controller: 'Charts2Controller'
-      });
+      }).state('home', {
+         url: '/',
+         templateUrl: 'app/note/notes_2.html',
+         controller: 'Notes2Controller',
+         controllerAs: 'n'
+       });
 
     $urlRouterProvider.otherwise('/');
   }

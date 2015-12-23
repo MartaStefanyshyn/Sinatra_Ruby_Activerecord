@@ -12,9 +12,9 @@
         $location.path('/notes');
       };
       $scope.updateNote = function () {
-        Notes.update({id: $scope.note.id}, $scope.note);
-        console.log($scope.note.id);
-        console.log($scope.note);
+        Notes.update({id: $scope.note.note.id}, $scope.note.note);
+        console.log($scope.note.note.id);
+        console.log($scope.note.note);
       };
       $scope.addComment = function(noteId, parentId){
         DataHolder.setValue(noteId, parentId);
